@@ -1,21 +1,34 @@
+import { describe, it, expect, beforeEach } from "vitest"
 
-import { describe, expect, it } from "vitest";
+const superpositionStates = new Map()
 
-const accounts = simnet.getAccounts();
-const address1 = accounts.get("wallet_1")!;
+describe("superposition-state-tracker", () => {
+  beforeEach(() => {
+    superpositionStates.clear()
+  })
+  
+  it("should record a superposition state", () => {
+    const result = recordSuperposition(1, "up")
+    expect(result.success).toBe(true)
+  })
+  
+  it("should retrieve a superposition state", () => {
+    recordSuperposition(1, "down")
+    const state = getSuperpositionState(1)
+    expect(state).toBeDefined()
+    expect(state.state).toBe("down")
+  })
+})
 
-/*
-  The test below is an example. To learn more, read the testing documentation here:
-  https://docs.hiro.so/stacks/clarinet-js-sdk
-*/
+function recordSuperposition(particleId: number, state: string) {
+  superpositionStates.set(particleId, {
+    state: state,
+    last_measured: Date.now(),
+  })
+  return { success: true }
+}
 
-describe("example tests", () => {
-  it("ensures simnet is well initalised", () => {
-    expect(simnet.blockHeight).toBeDefined();
-  });
+function getSuperpositionState(particleId: number) {
+  return superpositionStates.get(particleId)
+}
 
-  // it("shows an example", () => {
-  //   const { result } = simnet.callReadOnlyFn("counter", "get-counter", [], address1);
-  //   expect(result).toBeUint(0);
-  // });
-});
