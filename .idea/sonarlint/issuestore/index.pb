@@ -5,3 +5,5 @@ Y
 )contracts/quantum-particle-allocator.clar,7/d/7d5db2c1f1395e75fbd665157263a56b95b6f0d1
 X
 (tests/quantum-particle-allocator.test.ts,7/b/7b191d2400fafff3aa9b584bd475a2acf0296d34
+Z
+*contracts/superposition-state-tracker.clar,c/5/c5b6126ff728a4e46a66deb673166f6801b31777
