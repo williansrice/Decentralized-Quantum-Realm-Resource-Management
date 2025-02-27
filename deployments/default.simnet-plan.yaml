@@ -65,6 +65,11 @@ plan:
             path: contracts/entanglement-network-optimizer.clar
             clarity-version: 2
         - emulated-contract-publish:
+            contract-name: quantum-decoherence-preventer
+            emulated-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
+            path: contracts/quantum-decoherence-preventer.clar
+            clarity-version: 2
+        - emulated-contract-publish:
             contract-name: quantum-particle-allocator
             emulated-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
             path: contracts/quantum-particle-allocator.clar
