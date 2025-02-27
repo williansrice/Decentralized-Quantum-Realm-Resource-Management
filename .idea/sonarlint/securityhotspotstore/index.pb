@@ -13,3 +13,5 @@ Y
 -contracts/entanglement-network-optimizer.clar,0/c/0cdeb19c153968e63cf79cd71ef60a5c9ad1d7f0
 \
 ,tests/entanglement-network-optimizer.test.ts,b/a/ba1dbb210288e397c65a555e57afdce49d7fc669
+\
+,contracts/quantum-decoherence-preventer.clar,f/7/f7d79b48cad3eef7ffc89c812a80b3e46fd443a5
