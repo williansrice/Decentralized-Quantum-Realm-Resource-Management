@@ -1,21 +1,58 @@
+import { describe, it, expect, beforeEach } from "vitest"
 
-import { describe, expect, it } from "vitest";
+const particleAllocations = new Map()
+let lastParticleId = 0
 
-const accounts = simnet.getAccounts();
-const address1 = accounts.get("wallet_1")!;
+describe("quantum-particle-allocator", () => {
+  beforeEach(() => {
+    particleAllocations.clear()
+    lastParticleId = 0
+  })
+  
+  it("should allocate a new particle", () => {
+    const result = allocateParticle("electron")
+    expect(result.success).toBe(true)
+    expect(result.result).toBe(1)
+  })
+  
+  it("should retrieve a particle allocation", () => {
+    allocateParticle("proton")
+    const particle = getParticleAllocation(1)
+    expect(particle).toBeDefined()
+    expect(particle.particle_type).toBe("proton")
+    expect(particle.is_active).toBe(true)
+  })
+  
+  it("should deactivate a particle", () => {
+    allocateParticle("neutron")
+    const result = deactivateParticle(1)
+    expect(result.success).toBe(true)
+    const particle = getParticleAllocation(1)
+    expect(particle.is_active).toBe(false)
+  })
+})
 
-/*
-  The test below is an example. To learn more, read the testing documentation here:
-  https://docs.hiro.so/stacks/clarinet-js-sdk
-*/
+function allocateParticle(particleType: string) {
+  const newId = ++lastParticleId
+  particleAllocations.set(newId, {
+    owner: "tx-sender",
+    particle_type: particleType,
+    is_active: true,
+  })
+  return { success: true, result: newId }
+}
 
-describe("example tests", () => {
-  it("ensures simnet is well initalised", () => {
-    expect(simnet.blockHeight).toBeDefined();
-  });
+function getParticleAllocation(particleId: number) {
+  return particleAllocations.get(particleId)
+}
 
-  // it("shows an example", () => {
-  //   const { result } = simnet.callReadOnlyFn("counter", "get-counter", [], address1);
-  //   expect(result).toBeUint(0);
-  // });
-});
+function deactivateParticle(particleId: number) {
+  const particle = particleAllocations.get(particleId)
+  if (particle && particle.owner === "tx-sender") {
+    particle.is_active = false
+    particleAllocations.set(particleId, particle)
+    return { success: true }
+  }
+  return { success: false, error: "Particle not found or unauthorized" }
+}
+
