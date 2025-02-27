@@ -5,6 +5,11 @@ authors = []
 telemetry = true
 cache_dir = './.cache'
 requirements = []
+[contracts.entanglement-network-optimizer]
+path = 'contracts/entanglement-network-optimizer.clar'
+clarity_version = 2
+epoch = 2.5
+
 [contracts.quantum-particle-allocator]
 path = 'contracts/quantum-particle-allocator.clar'
 clarity_version = 2
