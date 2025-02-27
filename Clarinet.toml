@@ -10,11 +10,6 @@ path = 'contracts/entanglement-network-optimizer.clar'
 clarity_version = 2
 epoch = 2.5
 
-[contracts.quantum-decoherence-preventer]
-path = 'contracts/quantum-decoherence-preventer.clar'
-clarity_version = 2
-epoch = 2.5
-
 [contracts.quantum-particle-allocator]
 path = 'contracts/quantum-particle-allocator.clar'
 clarity_version = 2
