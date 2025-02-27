@@ -60,6 +60,11 @@ plan:
     - id: 0
       transactions:
         - emulated-contract-publish:
+            contract-name: entanglement-network-optimizer
+            emulated-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
+            path: contracts/entanglement-network-optimizer.clar
+            clarity-version: 2
+        - emulated-contract-publish:
             contract-name: quantum-particle-allocator
             emulated-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
             path: contracts/quantum-particle-allocator.clar

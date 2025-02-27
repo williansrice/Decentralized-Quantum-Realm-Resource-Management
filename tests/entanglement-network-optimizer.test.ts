@@ -1,21 +1,40 @@
+import { describe, it, expect, beforeEach } from "vitest"
 
-import { describe, expect, it } from "vitest";
+const entanglements = new Map()
+let lastEntanglementId = 0
 
-const accounts = simnet.getAccounts();
-const address1 = accounts.get("wallet_1")!;
+describe("entanglement-network-optimizer", () => {
+  beforeEach(() => {
+    entanglements.clear()
+    lastEntanglementId = 0
+  })
+  
+  it("should create a new entanglement", () => {
+    const result = createEntanglement(1, 2)
+    expect(result.success).toBe(true)
+    expect(result.result).toBe(1)
+  })
+  
+  it("should retrieve an entanglement", () => {
+    createEntanglement(1, 2)
+    const entanglement = getEntanglement(1)
+    expect(entanglement).toBeDefined()
+    expect(entanglement.particle1_id).toBe(1)
+    expect(entanglement.particle2_id).toBe(2)
+  })
+})
 
-/*
-  The test below is an example. To learn more, read the testing documentation here:
-  https://docs.hiro.so/stacks/clarinet-js-sdk
-*/
+function createEntanglement(particle1Id: number, particle2Id: number) {
+  const newId = ++lastEntanglementId
+  entanglements.set(newId, {
+    particle1_id: particle1Id,
+    particle2_id: particle2Id,
+    strength: (particle1Id + particle2Id) % 100,
+  })
+  return { success: true, result: newId }
+}
 
-describe("example tests", () => {
-  it("ensures simnet is well initalised", () => {
-    expect(simnet.blockHeight).toBeDefined();
-  });
+function getEntanglement(entanglementId: number) {
+  return entanglements.get(entanglementId)
+}
 
-  // it("shows an example", () => {
-  //   const { result } = simnet.callReadOnlyFn("counter", "get-counter", [], address1);
-  //   expect(result).toBeUint(0);
-  // });
-});

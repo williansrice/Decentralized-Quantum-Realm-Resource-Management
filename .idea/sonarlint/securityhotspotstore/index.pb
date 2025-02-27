@@ -11,3 +11,5 @@ Y
 )tests/superposition-state-tracker.test.ts,8/6/8684ae4207f3cd0a86fe038503d0f67cea5e003a
 ]
 -contracts/entanglement-network-optimizer.clar,0/c/0cdeb19c153968e63cf79cd71ef60a5c9ad1d7f0
+\
+,tests/entanglement-network-optimizer.test.ts,b/a/ba1dbb210288e397c65a555e57afdce49d7fc669
